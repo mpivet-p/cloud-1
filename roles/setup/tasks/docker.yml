@@ -27,7 +27,7 @@
     driver_options:
       type: none
       o: bind
-      device: /root/data/mariadb
+      device: /root/data/phpmyadmin
 
 - name: Create a volume for the database
   community.docker.docker_volume:

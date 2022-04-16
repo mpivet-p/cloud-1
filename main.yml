@@ -14,3 +14,5 @@
       tags: setup
     - role: mariadb
       tags: mariadb
+    - role: phpmyadmin
+      tags: phpmyadmin
