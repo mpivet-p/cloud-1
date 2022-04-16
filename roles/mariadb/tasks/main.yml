@@ -1,0 +1,30 @@
+---
+- name: Copy necessary files to host
+  ansible.builtin.copy:
+    src: ./roles/mariadb/files/
+    dest: /tmp/mariadb
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Build our mariadb image from the dockerfile with the config
+  community.docker.docker_image:
+    name: db
+    source: build
+    build:
+      path: /tmp/mariadb/
+
+- name: Launch our container
+  community.docker.docker_container:
+    name: db
+    image: db
+    restart_policy: always
+    env:
+      DB_USER: "{{ DB_USER }}"
+      DB_PASS: "{{ DB_PASS }}"
+      DB_NAME: "{{ DB_NAME }}"
+      DB_HOST: "{{ DB_HOST }}"
+    networks:
+      - name: inception
+    volumes:
+      - db_data:/var/lib/mysql

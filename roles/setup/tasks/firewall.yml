@@ -1,0 +1,30 @@
+---
+- name: Deny trafic in
+  ufw:
+    default: deny
+    direction: incoming
+
+- name: Allow trafic out
+  ufw:
+    default: allow
+    direction: outgoing
+
+- name: Remove ssh
+  ufw:
+    delete: true
+    rule: allow
+    port: 22
+
+- name: Allow our ports
+  ufw:
+    rule: allow
+    port: "{{ item }}"
+    proto: tcp
+  loop:
+    - 22
+    - 80
+    - 443
+
+- name: Enable ufw
+  ufw:
+    state: enabled

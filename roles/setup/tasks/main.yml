@@ -1,0 +1,4 @@
+---
+- import_tasks: installs.yml
+- import_tasks: docker.yml
+- import_tasks: firewall.yml
