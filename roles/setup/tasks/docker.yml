@@ -19,7 +19,7 @@
     driver_options:
       type: none
       o: bind
-      device: /root/data/worpress
+      device: /root/data/wordpress
 
 - name: Create a volume for nginx and phpmyadmin
   community.docker.docker_volume:

@@ -1,0 +1,28 @@
+---
+- name: Copy Dockerfile to host
+  ansible.builtin.copy:
+    src: ./roles/phpmyadmin/files/Dockerfile
+    dest: /tmp/phpmyadmin/
+
+- name: Copy and modify phpmyadmin's config
+  ansible.builtin.template:
+    src: ./roles/phpmyadmin/files/config.inc.php.j2
+    dest: /tmp/phpmyadmin/config.inc.php
+    mode: 0666
+
+- name: Build our phpymadmin image from the dockerfile with the config
+  community.docker.docker_image:
+    name: my_phpmyadmin
+    source: build
+    build:
+      path: /tmp/phpmyadmin
+
+- name: Launch our container
+  community.docker.docker_container:
+    name: phpmyadmin
+    image: my_phpmyadmin
+    restart_policy: always
+    networks:
+      - name: inception
+    volumes:
+      - phpma_data:/var/www/phpmyadmin
