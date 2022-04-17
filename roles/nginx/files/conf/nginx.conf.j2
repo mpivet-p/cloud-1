@@ -30,8 +30,8 @@ http {
     # SSL Settings
     ##
 
-    ssl_certificate /etc/ssl/private/mpivet-p.42.fr.cert;
-    ssl_certificate_key /etc/ssl/private/mpivet-p.42.fr.key;
+    ssl_certificate /etc/ssl/private/certficate.cert;
+    ssl_certificate_key /etc/ssl/private/certificate.key;
 
     ssl_protocols TLSv1.2; # Dropping SSLv3, ref: POODLE
     ssl_ciphers ALL:!ADH:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv3:+EXP;
@@ -47,7 +47,7 @@ http {
     server {
         listen 443 ssl;
         listen [::]:443 ssl;
-        server_name mpivet-p.42.fr;
+        server_name {{ DOMAIN }};
      
         root /var/www/wordpress;
         index index.php;
@@ -73,7 +73,7 @@ http {
     server {
         listen 443 ssl;
         listen [::]:443 ssl;
-        server_name phpmyadmin.mpivet-p.42.fr;
+        server_name phpmyadmin.{{ DOMAIN }};
      
         root /var/www/phpmyadmin;
         index index.php;

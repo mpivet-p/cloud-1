@@ -5,8 +5,8 @@ RUN apt update\
     && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /etc/ssl/private
-COPY ./conf/mpivet-p.42.fr.cert /etc/ssl/private/mpivet-p.42.fr.cert
-COPY ./conf/mpivet-p.42.fr.key /etc/ssl/private/mpivet-p.42.fr.key
+COPY ./conf/certificate.cert /etc/ssl/private/certificate.cert
+COPY ./conf/certificate.key /etc/ssl/private/certificate.key
 
 WORKDIR /etc/nginx
 COPY ./conf/nginx.conf /etc/nginx/nginx.conf

@@ -13,8 +13,8 @@ if [ ! -f "/var/www/wordpress/wp-config.php" ]; then
         --dbuser=${DB_USER}\
         --dbpass=${DB_PASS}
 
-    sed -i '21s/^/define("WP_SITEURL", "https:\/\/mpivet-p.42.fr");\n/' /var/www/wordpress/wp-config.php
-    sed -i '21s/^/define("WP_HOME", "https:\/\/mpivet-p.42.fr");\n/' /var/www/wordpress/wp-config.php
+    sed -i '21s/^/define("WP_SITEURL", "https:\/\/{{ DOMAIN }}");\n/' /var/www/wordpress/wp-config.php
+    sed -i '21s/^/define("WP_HOME", "https:\/\/{{ DOMAIN }}");\n/' /var/www/wordpress/wp-config.php
     sed -i '21s/^/define("FORCE_SSL_ADMIN", true);\n/' /var/www/wordpress/wp-config.php
 
     wp core install\

@@ -17,6 +17,11 @@
     build:
       path: /tmp/phpmyadmin
 
+- name: Remove file containing database's password
+  docker.builtin.file:
+    path: /tmp/phpmyadmin/config.inc.php
+    state: absent
+
 - name: Launch our container
   community.docker.docker_container:
     name: phpmyadmin
