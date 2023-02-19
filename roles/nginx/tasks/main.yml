@@ -2,28 +2,11 @@
 - name: Copy Dockerfile to host
   ansible.builtin.copy:
     src: ./roles/nginx/files/Dockerfile
-    dest: /tmp/nginx/
+    dest: /services/cloud-1/nginx/
 
 - name: Copy and modify nginx's config
   ansible.builtin.template:
     src: ./roles/nginx/files/conf/nginx.conf.j2
-    dest: /tmp/nginx/conf/nginx.conf
+    dest: /services/cloud-1/nginx/conf/nginx.conf
     mode: 0664
 
-- name: Build our nginx image from the dockerfile with the config
-  community.docker.docker_image:
-    name: my_nginx
-    source: build
-    build:
-      path: /tmp/nginx
-
-- name: Launch our container
-  community.docker.docker_container:
-    name: nginx
-    image: my_nginx
-    restart_policy: always
-    networks:
-      - name: inception
-    volumes:
-      - phpma_data:/var/www/phpmyadmin:ro
-      - wp_data:/var/www/wordpress:ro

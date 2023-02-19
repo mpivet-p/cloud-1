@@ -37,3 +37,9 @@
 - name: Install Docker Module for Python
   pip:
     name: docker
+
+- name: Update apt and install docker-compose
+  apt:
+    name: docker-compose
+    state: latest
+    update_cache: true

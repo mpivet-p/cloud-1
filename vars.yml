@@ -1,0 +1,8 @@
+DB_USER: "wordpress"
+DB_NAME: "wordpress"
+DB_HOST: "db"
+WP_URL: "42goose.ovh"
+WP_TITLE: "mpivet-p"
+WP_ADMIN: "mpivet"
+WP_MAIL: "mpivet-p@student.42madrid.com"
+DOMAIN: "mpivet-p.fr"

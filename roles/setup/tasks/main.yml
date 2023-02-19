@@ -1,4 +1,5 @@
 ---
+- import_tasks: copy.yml
 - import_tasks: installs.yml
 - import_tasks: docker.yml
 - import_tasks: firewall.yml
