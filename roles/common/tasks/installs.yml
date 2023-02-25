@@ -1,11 +1,13 @@
 ---
 - name: Install aptitude
+  tags: [setup, installs, apt]
   apt:
     name: aptitude
     state: latest
     update_cache: true
 
 - name: Install software required for docker
+  tags: [setup, installs, apt]
   apt:
     pkg:
       - apt-transport-https
@@ -14,31 +16,36 @@
       - software-properties-common
       - python3-pip
       - virtualenv
-      - python3-setuptools
+      - python-setuptools
     state: latest
     update_cache: true
 
 - name: Add Docker GPG apt Key
+  tags: [setup, installs, apt]
   apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
     state: present
 
 - name: Add Docker Repository
+  tags: [setup, installs, apt]
   apt_repository:
     repo: deb https://download.docker.com/linux/ubuntu focal stable
     state: present
 
 - name: Update apt and install docker-ce
+  tags: [setup, installs, apt]
   apt:
     name: docker-ce
     state: latest
     update_cache: true
 
 - name: Install Docker Module for Python
-  pip:
+  tags: [setup, installs, pip]
+  ansible.builtin.pip:
     name: docker
 
 - name: Update apt and install docker-compose
+  tags: [setup, installs, apt]
   apt:
     name: docker-compose
     state: latest

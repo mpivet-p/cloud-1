@@ -1,0 +1,44 @@
+---
+- name: Copy docker-compose to host
+  tags: [setup, copy, docker]
+  ansible.builtin.copy:
+    src: ./roles/common/files/docker-compose.yml
+    dest: /services/cloud-1/
+
+- name: Copy mariadb files to host
+  tags: [setup, copy, mariadb]
+  ansible.builtin.copy:
+    src: ./roles/common/files/mariadb
+    dest: /services/cloud-1/mariadb
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: create directory for phpmyadmin
+  tags: [setup, copy, phpmyadmin]
+  file:
+    path: /services/cloud-1/phpmyadmin
+    state: directory
+
+- name: Copy PMA's Dockerfile to host
+  tags: [setup, copy, phpmyadmin]
+  ansible.builtin.copy:
+    src: ./roles/common/files/phpmyadmin/Dockerfile
+    dest: /services/cloud-1/phpmyadmin/Dockerfile
+
+- name: Copy and modify phpmyadmin's config
+  tags: [setup, copy, phpmyadmin]
+  ansible.builtin.template:
+    src: ./roles/common/files/phpmyadmin/config.inc.php.j2
+    dest: /services/cloud-1/phpmyadmin/config.inc.php
+    mode: 0666
+
+- name: Copy wordpress necessary files to host
+  tags: [setup, copy, wordpress]
+  ansible.builtin.copy:
+    src: ./roles/common/files/wordpress
+    dest: /services/cloud-1/wordpress
+    owner: root
+    group: root
+    mode: '0755'
+

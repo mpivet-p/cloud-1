@@ -1,5 +1,0 @@
----
-- name: Copy docker-compose to host
-  ansible.builtin.copy:
-    src: ./roles/setup/files/docker-compose.yml
-    dest: /services/cloud-1/

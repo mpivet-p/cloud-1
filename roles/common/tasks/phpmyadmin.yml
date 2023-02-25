@@ -1,0 +1,8 @@
+---
+
+#Build container first
+
+- name: Remove file containing database's password
+  docker.builtin.file:
+    path: /services/cloud-1/phpmyadmin/config.inc.php
+    state: absent

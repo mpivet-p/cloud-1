@@ -1,0 +1,9 @@
+---
+- import_tasks: copy.yml
+- import_tasks: installs.yml
+- import_tasks: docker.yml
+- import_tasks: firewall.yml
+#- import_tasks: mariadb.yml
+#- import_tasks: phpmyadmin.yml
+#- import_tasks: wordpress.yml
+#- import_tasks: nginx.yml

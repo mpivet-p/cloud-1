@@ -1,11 +1,4 @@
 ---
-- name: Copy necessary files to host
-  ansible.builtin.copy:
-    src: ./roles/wordpress/files/
-    dest: /tmp/wordpress
-    owner: root
-    group: root
-    mode: '0755'
 
 #Build first
 

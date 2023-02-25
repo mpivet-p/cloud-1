@@ -1,21 +1,25 @@
 ---
 - name: Deny trafic in
+  tags: [setup, firewall]
   ufw:
     default: deny
     direction: incoming
 
 - name: Allow trafic out
+  tags: [setup, firewall]
   ufw:
     default: allow
     direction: outgoing
 
 - name: Remove ssh
+  tags: [setup, firewall]
   ufw:
     delete: true
     rule: allow
     port: 22
 
 - name: Allow our ports
+  tags: [setup, firewall]
   ufw:
     rule: allow
     port: "{{ item }}"
@@ -26,5 +30,6 @@
     - 443
 
 - name: Enable ufw
+  tags: [setup, firewall]
   ufw:
     state: enabled

@@ -1,0 +1,24 @@
+---
+- hosts: all
+  vars_files:
+    - passwords.yml
+    - vars.yml
+
+  roles:
+    - common
+
+#    - role: setup
+#      tags: setup
+#    - role: mariadb
+#      tags: mariadb
+#    - role: phpmyadmin
+#      tags: phpmyadmin
+#    - role: wordpress
+#      tags: wordpress
+#    - role: nginx
+#      tags: nginx
+
+# ansible-vault create passwords.yml
+#passwords:
+#  WP_PASS: "wordpress"
+#  DB_PASS: "wordpress"
