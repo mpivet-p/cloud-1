@@ -3,6 +3,8 @@
   vars_files:
     - passwords.yml
     - vars.yml
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
 
   roles:
     - common

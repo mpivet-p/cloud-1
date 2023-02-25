@@ -1,9 +1,9 @@
 ---
-- name: Copy necessary files to host
-  ansible.builtin.copy:
-    src: ./roles/mariadb/files/
-    dest: /services/cloud-1/mariadb
-    owner: root
-    group: root
-    mode: '0755'
+- name: Build mariadb container
+  tags: [mariadb, build]
+  community.docker.docker_compose:
+    project_src: /services/cloud-1/
+    project_name: mariadb
+    build: true
+  register: output
 

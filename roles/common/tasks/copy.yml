@@ -9,22 +9,22 @@
   tags: [setup, copy, mariadb]
   ansible.builtin.copy:
     src: ./roles/common/files/mariadb
-    dest: /services/cloud-1/mariadb
+    dest: /services/cloud-1/
     owner: root
     group: root
     mode: '0755'
 
-- name: create directory for phpmyadmin
-  tags: [setup, copy, phpmyadmin]
-  file:
-    path: /services/cloud-1/phpmyadmin
-    state: directory
+#- name: create directory for phpmyadmin
+#  tags: [setup, copy, phpmyadmin]
+#  file:
+#    path: /services/cloud-1/phpmyadmin
+#    state: directory
 
 - name: Copy PMA's Dockerfile to host
   tags: [setup, copy, phpmyadmin]
   ansible.builtin.copy:
     src: ./roles/common/files/phpmyadmin/Dockerfile
-    dest: /services/cloud-1/phpmyadmin/Dockerfile
+    dest: /services/cloud-1/phpmyadmin/
 
 - name: Copy and modify phpmyadmin's config
   tags: [setup, copy, phpmyadmin]
@@ -37,8 +37,27 @@
   tags: [setup, copy, wordpress]
   ansible.builtin.copy:
     src: ./roles/common/files/wordpress
-    dest: /services/cloud-1/wordpress
+    dest: /services/cloud-1/
     owner: root
     group: root
     mode: '0755'
+
+#- name: create directory for phpmyadmin
+#  tags: [setup, copy, phpmyadmin]
+#  file:
+#    path: /services/cloud-1/phpmyadmin
+#    state: directory
+
+- name: Copy nginx Dockerfile to host
+  tags: [setup, copy, nginx]
+  ansible.builtin.copy:
+    src: ./roles/common/files/nginx/Dockerfile
+    dest: /services/cloud-1/nginx/
+
+- name: Copy and modify nginx's config
+  tags: [setup, copy, nginx]
+  ansible.builtin.template:
+    src: ./roles/common/files/nginx/conf/nginx.conf.j2
+    dest: /services/cloud-1/nginx/conf/
+    mode: 0664
 

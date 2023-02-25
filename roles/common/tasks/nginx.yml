@@ -1,12 +1,2 @@
 ---
-- name: Copy Dockerfile to host
-  ansible.builtin.copy:
-    src: ./roles/nginx/files/Dockerfile
-    dest: /services/cloud-1/nginx/
-
-- name: Copy and modify nginx's config
-  ansible.builtin.template:
-    src: ./roles/nginx/files/conf/nginx.conf.j2
-    dest: /services/cloud-1/nginx/conf/nginx.conf
-    mode: 0664
 
