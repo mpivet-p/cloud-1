@@ -14,12 +14,6 @@
     group: root
     mode: '0755'
 
-#- name: create directory for phpmyadmin
-#  tags: [setup, copy, phpmyadmin]
-#  file:
-#    path: /services/cloud-1/phpmyadmin
-#    state: directory
-
 - name: Copy PMA's Dockerfile to host
   tags: [setup, copy, phpmyadmin]
   ansible.builtin.copy:
@@ -42,22 +36,29 @@
     group: root
     mode: '0755'
 
-#- name: create directory for phpmyadmin
-#  tags: [setup, copy, phpmyadmin]
-#  file:
-#    path: /services/cloud-1/phpmyadmin
-#    state: directory
-
 - name: Copy nginx Dockerfile to host
   tags: [setup, copy, nginx]
   ansible.builtin.copy:
     src: ./roles/common/files/nginx/Dockerfile
     dest: /services/cloud-1/nginx/
 
+- name: Copy nginx conf directory
+  tags: [setup, copy, nginx]
+  ansible.builtin.copy:
+    src: ./roles/common/files/nginx/conf
+    dest: /services/cloud-1/nginx/
+
 - name: Copy and modify nginx's config
   tags: [setup, copy, nginx]
   ansible.builtin.template:
-    src: ./roles/common/files/nginx/conf/nginx.conf.j2
-    dest: /services/cloud-1/nginx/conf/
+    src: ./roles/common/files/nginx/template/nginx.conf.j2
+    dest: /services/cloud-1/nginx/conf/nginx.conf
+    mode: 0664
+
+- name: Copy .env file
+  tags: [setup, copy]
+  ansible.builtin.template:
+    src: ./roles/common/files/.env.j2
+    dest: /services/cloud-1/.env
     mode: 0664
 

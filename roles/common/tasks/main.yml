@@ -4,6 +4,11 @@
 - import_tasks: docker.yml
 - import_tasks: firewall.yml
 - import_tasks: mariadb.yml
-#- import_tasks: phpmyadmin.yml
-#- import_tasks: wordpress.yml
-#- import_tasks: nginx.yml
+- import_tasks: phpmyadmin.yml
+- import_tasks: wordpress.yml
+- import_tasks: nginx.yml
+
+- name: Launch containers
+  community.docker.docker_compose:
+    project_src: /services/cloud-1/
+    state: present

@@ -2,6 +2,7 @@
 
 export WP_CLI_CACHE_DIR=/var/www/wordpress/.wp-cli/cache
 
+sleep 20
 if [ ! -f "/var/www/wordpress/wp-config.php" ]; then
 
     #If wp-config is missing we remove all files before reinstalling

@@ -1,8 +1,17 @@
 ---
 
-#Build container first
+- name: Build phpmyadmin container
+  tags: [phpmyadmin, build]
+  community.docker.docker_compose:
+    project_src: /services/cloud-1/
+    project_name: cloud-1
+    services:
+      - phpmyadmin
+    build: true
+    stopped: true
 
 - name: Remove file containing database's password
-  docker.builtin.file:
+  tags: [phpmyadmin, build]
+  ansible.builtin.file:
     path: /services/cloud-1/phpmyadmin/config.inc.php
     state: absent

@@ -3,7 +3,8 @@
   tags: [mariadb, build]
   community.docker.docker_compose:
     project_src: /services/cloud-1/
-    project_name: mariadb
+    project_name: cloud-1
+    services:
+      - db
     build: true
-  register: output
-
+    stopped: true

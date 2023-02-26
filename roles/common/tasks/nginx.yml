@@ -1,2 +1,11 @@
 ---
 
+- name: Build nginx container
+  tags: [nginx, build]
+  community.docker.docker_compose:
+    project_src: /services/cloud-1/
+    project_name: cloud-1
+    services:
+      - nginx
+    build: true
+    stopped: true

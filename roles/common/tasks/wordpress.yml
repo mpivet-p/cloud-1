@@ -1,10 +1,17 @@
 ---
 
-#Build first
+- name: Build wordpress container
+  tags: [wordpress, build]
+  community.docker.docker_compose:
+    project_src: /services/cloud-1/
+    project_name: cloud-1
+    services:
+      - wordpress
+    build: true
+    stopped: true
 
 - name: Remove file containing admin account and database passwords
-  docker.builtin.file:
+  ansible.builtin.file:
     path: /services/cloud-1/wordpress/install.sh
     state: absent
 
-#Run
