@@ -11,6 +11,7 @@
     stopped: true
 
 - name: Remove file containing admin account and database passwords
+  tags: [wordpress, build]
   ansible.builtin.file:
     path: /services/cloud-1/wordpress/install.sh
     state: absent

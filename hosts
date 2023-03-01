@@ -1,2 +1,5 @@
 [vm]
 localhost ansible_port=4243 ansible_user=root
+
+[vps]
+51.178.45.137 ansible_port=22 ansible_user=root

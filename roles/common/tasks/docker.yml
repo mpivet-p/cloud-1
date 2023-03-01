@@ -1,8 +1,4 @@
 ---
-#- name: Create common network for all containers
-#  community.docker.docker_network:
-#    name: inception
-
 - name: Create the directories where the volumes are going to be accessible
   tags: [setup, volumes]
   ansible.builtin.file:
@@ -13,27 +9,3 @@
     - wordpress
     - database
     - phpmyadmin
-
-#- name: Create a volume for nginx and wordpress
-#  community.docker.docker_volume:
-#    name: wp_data
-#    driver_options:
-#      type: none
-#      o: bind
-#      device: /root/data/wordpress
-#
-#- name: Create a volume for nginx and phpmyadmin
-#  community.docker.docker_volume:
-#    name: phpma_data
-#    driver_options:
-#      type: none
-#      o: bind
-#      device: /root/data/phpmyadmin
-#
-#- name: Create a volume for the database
-#  community.docker.docker_volume:
-#    name: db_data
-#    driver_options:
-#      type: none
-#      o: bind
-#      device: /root/data/database
